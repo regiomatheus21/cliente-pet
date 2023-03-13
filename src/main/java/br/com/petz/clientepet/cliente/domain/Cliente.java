@@ -13,7 +13,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
@@ -22,7 +21,7 @@ import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE) //é utilizado pois no hibernet precisa de um construtor vazio;
 @Getter
-@Entity
+//@Entity
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

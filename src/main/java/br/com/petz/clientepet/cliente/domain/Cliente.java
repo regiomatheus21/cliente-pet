@@ -2,7 +2,10 @@
 
 package br.com.petz.clientepet.cliente.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +13,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
@@ -21,6 +25,8 @@ import java.util.UUID;
 @Entity
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id",updatable = false,unique = true,nullable = false)
     private UUID idCliente;
     @NotBlank
     private String nomeCompleto;
@@ -41,7 +47,6 @@ public class Cliente {
     private LocalDateTime dataHoraDaUltimaAlteracao;
 
     public Cliente(String nomeCompleto, String email, String celular, String telefone, Sexo sexo, LocalDate dataNascimento, String cpf, Boolean aceitaTermos) {
-        this.idCliente= UUID.randomUUID();
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.celular = celular;

@@ -3,26 +3,22 @@
 package br.com.petz.clientepet.cliente.domain;
 
 import br.com.petz.clientepet.cliente.application.api.ClienteRequest;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE) //é utilizado pois no hibernet precisa de um construtor vazio;
 @Getter
-//@Entity
+@Entity
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

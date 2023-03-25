@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/cliente") // é v1 pois é a primeira versão da api cliente.
@@ -18,5 +19,9 @@ public interface ClienteAPI {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List <ClientelistResponse> getTodosClientes( );
+
+    @GetMapping(value = "/{idCliente}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ClienteDetalhadoResponse getClienteAtravesId(@PathVariable UUID idCliente);
 
 }

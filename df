@@ -1,0 +1,84 @@
+[1mdiff --git a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAPI.java b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAPI.java[m
+[1mindex a637c6d..17ada34 100644[m
+[1m--- a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAPI.java[m
+[1m+++ b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAPI.java[m
+[36m@@ -28,4 +28,10 @@[m [mpublic interface ClienteAPI {[m
+     @ResponseStatus(code = HttpStatus.NO_CONTENT)[m
+     void deletaClienteAtravesId(@PathVariable UUID idCliente);[m
+ [m
+[32m+[m[32m    @PatchMapping(value = "/{idCliente}")[m
+[32m+[m[32m    @ResponseStatus(code = HttpStatus.NO_CONTENT)[m
+[32m+[m[32m    void patchAlteraCliente(@PathVariable UUID idCliente,[m
+[32m+[m[32m                            @Valid @RequestBody ClienteAlteracaoRequest clienteAlteracaoRequest);[m
+[32m+[m
+[32m+[m
+ }[m
+[1mdiff --git a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAlteracaoRequest.java b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAlteracaoRequest.java[m
+[1mindex 314e1dd..e542930 100644[m
+[1m--- a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAlteracaoRequest.java[m
+[1m+++ b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteAlteracaoRequest.java[m
+[36m@@ -2,28 +2,21 @@[m [mpackage br.com.petz.clientepet.cliente.application.api;[m
+ [m
+ import br.com.petz.clientepet.cliente.domain.Sexo;[m
+ import lombok.Value;[m
+[31m-import org.hibernate.validator.constraints.br.CPF;[m
+ [m
+[31m-import javax.validation.constraints.Email;[m
+ import javax.validation.constraints.NotBlank;[m
+ import javax.validation.constraints.NotNull;[m
+ import java.time.LocalDate;[m
+ [m
+ @Value[m
+[31m-public class ClienteRequest {[m
+[32m+[m[32mpublic class ClienteAlteracaoRequest {[m
+     @NotBlank[m
+     private String nomeCompleto;[m
+     @NotBlank[m
+[31m-    @Email[m
+[31m-    private String email;[m
+[31m-    @NotBlank[m
+     private String celular;[m
+     private String telefone;[m
+     private Sexo sexo;[m
+     @NotNull[m
+     private LocalDate dataNascimento;[m
+[31m-    @CPF[m
+[31m-    private String cpf;[m
+     @NotNull[m
+     private Boolean aceitaTermos;[m
+ }[m
+[1mdiff --git a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteController.java b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteController.java[m
+[1mindex 54ab57c..775a203 100644[m
+[1m--- a/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteController.java[m
+[1m+++ b/src/main/java/br/com/petz/clientepet/cliente/application/api/ClienteController.java[m
+[36m@@ -5,6 +5,7 @@[m [mimport lombok.extern.log4j.Log4j2;[m
+ import org.springframework.web.bind.annotation.RestController;[m
+ import br.com.petz.clientepet.cliente.application.service.ClienteService;[m
+ [m
+[32m+[m[32mimport javax.validation.Valid;[m
+ import java.util.List;[m
+ import java.util.UUID;[m
+ [m
+[36m@@ -47,4 +48,12 @@[m [mpublic class ClienteController implements ClienteAPI{[m
+ [m
+     }[m
+ [m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void patchAlteraCliente(UUID idCliente , @Valid ClienteAlteracaoRequest clienteAlteracaoRequest) {[m
+[32m+[m[32m        log.info("[inicia] ClienteController - patchAlteraCliente ");[m
+[32m+[m[32m        log.info("[IdCliente] {}", idCliente);[m
+[32m+[m[32m        log.info("[Finaliza] ClienteController - patchAlteraCliente ");[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+ }[m
+[1mdiff --git a/src/main/java/br/com/petz/clientepet/cliente/application/repository/ClienteRepository.java b/src/main/java/br/com/petz/clientepet/cliente/application/repository/ClienteRepository.java[m
+[1mindex 468cd86..4d3257e 100644[m
+[1m--- a/src/main/java/br/com/petz/clientepet/cliente/application/repository/ClienteRepository.java[m
+[1m+++ b/src/main/java/br/com/petz/clientepet/cliente/application/repository/ClienteRepository.java[m
+[36m@@ -13,4 +13,5 @@[m [mpublic interface ClienteRepository  {[m
+ [m
+     Cliente buscaClienteAtravesId(UUID idCliente);[m
+     void deletaCliente(Cliente cliente);[m
+[32m+[m[41m    [m
+ }[m

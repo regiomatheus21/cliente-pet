@@ -3,8 +3,6 @@ package br.com.petz.clientepet.pet.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -18,7 +16,7 @@ import java.util.UUID;
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "uuid",name = "idPet")
+    @Column(columnDefinition = "uuid",name = "idPet",updatable = false,unique = true,nullable = false)
     private UUID idPet;
     @NotBlank
     private String nomePet;
@@ -37,7 +35,4 @@ public class Pet {
     private Integer peso;
     private LocalDateTime dataHoraDoCadastro;
     private LocalDateTime dataHoraDaUltimaAlteracao;
-
-
-
 }

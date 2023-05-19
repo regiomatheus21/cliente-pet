@@ -26,7 +26,8 @@ public class PetInfraRepository implements PetRepository {
     @Override
     public List<Pet> buscaPetsDoClienteComID(UUID idCliente) {
         log.info("[śtart] PetInfraRepository - buscaPetsDoClienteComID");
+        var pets = petSpringDataJPARepository.findByidClienteTutor(idCliente);
         log.info("[Finish] PetInfraRepository - buscaPetsDoClienteComID");
-        return null;
+        return pets;
     }
 }

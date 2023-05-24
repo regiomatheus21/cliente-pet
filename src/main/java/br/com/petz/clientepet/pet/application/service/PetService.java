@@ -12,4 +12,7 @@ public interface PetService {
     PetResponse criaPet(UUID idCliente, petRequest petRequest);
 
     List<PetClienteListResponse> buscaPetsDoClienteComID(UUID idCliente);
+
+
+    PetClienteListResponse buscaPetDoClienteComID(UUID idCliente, UUID idPet);
 }

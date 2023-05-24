@@ -35,4 +35,13 @@ public class PetApplicationService implements PetService{
         log.info(("[finish]- PetApplicationService - buscaPetsDoClienteComID"));
         return PetClienteListResponse.converte(petsDoCliente);
     }
+
+    @Override
+    public PetClienteListResponse buscaPetDoClienteComID(UUID idCliente, UUID idPet) {
+        log.info(("[start]- PetApplicationService - buscaPetDoClienteComID"));
+        log.info(("[finish]- PetApplicationService - buscaPetDoClienteComID"));
+
+        return null;
+    }
+
 }

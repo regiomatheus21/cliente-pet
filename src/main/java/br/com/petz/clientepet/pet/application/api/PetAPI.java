@@ -1,5 +1,6 @@
 package br.com.petz.clientepet.pet.application.api;
 
+import br.com.petz.clientepet.cliente.application.api.ClienteDetalhadoResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,5 +18,9 @@ public interface PetAPI  {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<PetClienteListResponse> getPetsDoClienteComID(@PathVariable UUID idCliente);
+    @GetMapping(value = "/{idPet}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ClienteDetalhadoResponse getClienteAtravesId(@PathVariable UUID idCliente,@PathVariable UUID idPet);
+
 
 }

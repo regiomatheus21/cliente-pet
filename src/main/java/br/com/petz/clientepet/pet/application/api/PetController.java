@@ -1,5 +1,6 @@
 package br.com.petz.clientepet.pet.application.api;
 
+import br.com.petz.clientepet.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.petz.clientepet.pet.application.service.PetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -28,5 +29,13 @@ public class PetController implements PetAPI {
         List<PetClienteListResponse> petsDoCliente = petService.buscaPetsDoClienteComID(idCliente);
         log.info("[finaliza] PetController - getPetsDoClienteComID");
         return petsDoCliente;
+    }
+
+    @Override
+    public ClienteDetalhadoResponse getClienteAtravesId(UUID idCliente, UUID idPet) {
+        log.info("[inicia] PetController - getClienteAtravesId");
+        log.info("[idCliente]{} - [idPet]{}",idCliente, idPet);
+        log.info("[finaliza] PetController - getClienteAtravesId");
+        return null;
     }
 }

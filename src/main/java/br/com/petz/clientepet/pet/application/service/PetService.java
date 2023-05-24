@@ -1,5 +1,6 @@
 package br.com.petz.clientepet.pet.application.service;
 
+import br.com.petz.clientepet.pet.application.api.PetAlteracaoRequest;
 import br.com.petz.clientepet.pet.application.api.PetClienteListResponse;
 import br.com.petz.clientepet.pet.application.api.PetResponse;
 import br.com.petz.clientepet.pet.application.api.petRequest;
@@ -17,4 +18,6 @@ public interface PetService {
     PetClienteListResponse buscaPetDoClienteComID(UUID idCliente, UUID idPet);
 
     void deletaPetDoClienteComID(UUID idCliente, UUID idPet);
+
+    void alteraPetDoClienteComID(UUID idCliente, UUID idPet, PetAlteracaoRequest petAlteracaoRequest);
 }
